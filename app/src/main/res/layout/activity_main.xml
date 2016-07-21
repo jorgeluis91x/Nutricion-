@@ -11,40 +11,134 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="center.innovus.nutriassist.MainActivity">
 
-    <android.support.design.widget.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/password"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/height"
-
-
-        android:imeOptions="actionUnspecified"
-        android:maxLines="1"
-        android:singleLine="true" />
-
-</android.support.design.widget.TextInputLayout>
-
+        android:text="Titulo o lo que debe hacer"
+        android:textColor="@color/primary_text"
+        android:gravity="center_horizontal"
+        android:textSize="25sp"
+        android:padding="10dp"
+        android:id="@+id/textView" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
+        android:paddingBottom="8dp"
         android:layout_height="wrap_content">
-
         <EditText
-            android:id="@+id/passworhd"
+            android:id="@+id/age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/height"
+            android:hint="@string/age"
+            android:inputType="number" />
 
 
-            android:imeOptions="actionUnspecified"
-            android:maxLines="1"
-            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="8dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/expected_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/expected_weight"
+            android:inputType="number" />
+
 
     </android.support.design.widget.TextInputLayout>
 
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="8dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/height"
+            android:paddingBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/height"
+            android:inputType="number" />
+
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="8dp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/activity_factor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:hint="@string/activity_factor"
+            android:inputType="number" />
+
+
+    </android.support.design.widget.TextInputLayout>
+
+
+
+
+
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/tvSex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/sex"
+            android:paddingRight="20dp"
+
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupSex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           >
+
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/masculine" />
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/femenine" />
+        </RadioGroup>
     </LinearLayout>
+
+
+
+
+
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calcular VCT"
+        android:background="@color/colorAccent"
+        android:onClick="calculate"
+        android:id="@+id/calculate_TCV" />
+
+
+</LinearLayout>
