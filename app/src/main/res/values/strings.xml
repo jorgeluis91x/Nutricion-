@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NutriAssist</string>
+
+
+
+
+        <string name="erase_all_fields">Borrar todo</string>
+
+        <!-- FIRST ACTIVITY -->
+
+        <string name="title_patient_data_activity">Información del paciente</string>
+        <string name="instructions_professional">Ingrese los datos del paciente</string>
+        <string name="sex">Sexo</string>
+        <string name="masculine">M</string>
+        <string name="femenine">F</string>
+        <string name="age">Edad (años)</string>
+        <string name="expected_weight">Peso esperado (kg)</string>
+        <string name="height">Altura (cm)</string>
+        <string name="activity_factor">Factor de actividad</string>
+        <string name="age_missing_toast">Por favor ingrese la edad</string>
+        <string name="expected_weight_missing_toast">Por favor ingrese el peso esperado</string>
+        <string name="height_missing_toast">Por favor ingrese la altura</string>
+        <string name="activity_factor_missing_toast">Por favor ingrese el factor de actividad</string>
+        <string name="calculate_TCV">Calcular VCT</string>
+
+        <!-- SECOND ACTIVITY -->
+
+        <string name="title_activity_macro_nutrients_percentages">Porcentajes de macronutrientes</string>
+        <string name="total_caloric_value">Valor calórico total: </string>
+        <string name="tvNotAssignedPercentage">Porcentaje sin asignar: </string>
+        <string name="tv_protein_percentage">Proteína</string>
+        <string name="fat">Grasas (%)</string>
+        <string name="carbohydrates">Carbohidratos (%)</string>
+        <string name="fat_missing_toast">Por favor ingrese el porcentaje de grasas</string>
+        <string name="carbohydrates_missing_toast">Por favor ingrese el porcentaje</string>
+        <string name="not_hundred_percent_toast">Los porcentajes deben sumar 100%</string>
+        <string name="assignPercentage">Asignar</string>
+
+        <!-- THIRD ACTIVITY -->
+
+        <string name="title_activity_daily_meals_percentages">Porcentajes de comidas</string>
+        <string name="proteinInGramsTextView">Proteína: </string>
+        <string name="fatInGramsTextView">Grasas: </string>
+        <string name="carbohydratesInGramsTextView">Carbohidratos: </string>
+        <string name="breakfast">Desayuno</string>
+        <string name="morning_snack">Nueves</string>
+        <string name="lunch">Almuerzo</string>
+        <string name="afternoon_snack">Onces</string>
+        <string name="dinner">Cena</string>
+        <string name="night_snack">Refrigerio nocturno</string>
+        <string name="breakfast_missing_toast">Por favor ingrese el porcentaje del desayuno</string>
+        <string name="morning_snack_missing_toast">Por favor ingrese el porcentaje de las nueves</string>
+        <string name="lunch_missing_toast">Por favor ingrese el porcentaje del almuerzo</string>
+        <string name="afternoon_snack_missing_toast">Por favor ingrese el porcentaje de las onces</string>
+        <string name="dinner_missing_toast">Por favor ingrese el porcentaje de la cena</string>
+        <string name="night_snack_missing_toast">Por favor ingrese el porcentaje del refrigerio nocturno</string>
+        <string name="continueButton">Continuar</string>
+
+        <!-- FOURTH ACTIVITY -->
+
+        <string name="title_activity_choose_food">Escoja los alimentos</string>
+        <string name="food_grams_not_assigned">Gramos sin asignar: </string>
+        <string name="sugars">Azúcares</string>
+        <string name="action_settings">Guardar menú en archivo</string>
+        <string name="info_food">Información de alimentos</string>
+
+
+        <string-array name="azucares">
+            <item>Azúcar</item>
+            <item>Panela</item>
+            <item>Chocolate con azúcar</item>
+            <item>Chocolate amargo</item>
+            <item>Miel de abejas</item>
+        </string-array>
+
+        <string-array name="carnes">
+            <item>Atún</item>
+            <item>Camarón</item>
+            <item>Carne de Cerdo</item>
+            <item>Carne de pavo</item>
+            <item>Carne de pollo</item>
+            <item>Carne de res</item>
+            <item>Carne molida</item>
+            <item>Chunchullo de res</item>
+            <item>Higado de Res</item>
+            <item>Huevo de gallina</item>
+            <item>Menudencias de pollo</item>
+            <item>Pajarilla de res</item>
+            <item>Pescado de mar</item>
+            <item>Pescado de río</item>
+            <item>Sardinas </item>
+        </string-array>
+
+        <string-array name="cereales">
+            <item>Arroz</item>
+            <item>Arroz integral</item>
+            <item>Avena</item>
+            <item>Cebada perlada</item>
+            <item>Cuchuco de cebada</item>
+            <item>Cuchuco de maíz</item>
+            <item>Harina de maíz amarillo</item>
+            <item>Pasta</item>
+        </string-array>
+
+
+        <string-array name="Derivados_de_cereal">
+            <item>Almojábana</item>
+            <item>Arepa de maíz amarillo</item>
+            <item>Corn Flakes</item>
+            <item>Galleta de soda</item>
+            <item>Pan de yuca</item>
+            <item>Pan francés</item>
+            <item>Pan integral</item>
+            <item>Pan mogolla</item>
+            <item>Ponqué</item>
+            <item>Tostadas o calados	</item>
+        </string-array>
+
+        <string-array name="Frutas">
+            <item>Banano</item>
+            <item>Ciruelas</item>
+            <item>Curuba</item>
+            <item>Durazno</item>
+            <item>Feijoa</item>
+            <item>Fresa</item>
+            <item>Granadilla</item>
+            <item>Guanábana</item>
+            <item>Guayaba</item>
+            <item>Lulo</item>
+            <item>Mandarina</item>
+            <item>Mango</item>
+            <item>Manzana</item>
+            <item>Maracuyá</item>
+            <item>Mora</item>
+            <item>Naranja</item>
+            <item>Papaya</item>
+            <item>Pera</item>
+            <item>Piña</item>
+            <item>Pitahaya</item>
+            <item>Tomate de árbol</item>
+            <item>Uchuva</item>
+            <item>Uva</item>
+        </string-array>
+
+        <string-array name="Grasas">
+            <item>Mantequilla</item>
+        </string-array>
+
+        <string-array name="Lacteos">
+            <item>Cuajada</item>
+            <item>Kumis</item>
+            <item>Leche entera</item>
+            <item>Queso campesino</item>
+            <item>Queso doblecrema</item>
+            <item>Yogurt</item>
+        </string-array>
+
+        <string-array name="Leguminosas">
+            <item>Arveja verde seca</item>
+            <item>Frijol</item>
+            <item>Garbanzo</item>
+            <item>Lenteja</item>
+        </string-array>
+
+        <string-array name="Tuberculos_raices_platanos">
+            <item>Papa común con cascara</item>
+            <item>Papa criolla con cascara</item>
+            <item>Plátano colí</item>
+            <item>Plátano hartón maduro</item>
+            <item>Plátano hartón verde</item>
+            <item>Yuca</item>
+        </string-array>
+
+        <string-array name="Verduras">
+            <item>Acelgas</item>
+            <item>Apio</item>
+            <item>Auyama</item>
+            <item>Berenjena</item>
+            <item>Brócoli</item>
+            <item>Cebolla cabezona</item>
+            <item>Champiñon</item>
+            <item>Coliflor</item>
+            <item>Espinaca</item>
+            <item>Habichuela</item>
+            <item>Pepino de rellenar</item>
+            <item>Champiñon</item>
+            <item>Coliflor</item>
+            <item>Espinaca</item>
+            <item>Habichuela</item>
+            <item>Lechuga</item>
+            <item>Pepino de rellenar</item>
+            <item>Rábano</item>
+            <item>Tomate</item>
+            <item>Zanahoria</item>
+        </string-array>
+
+</resources>
