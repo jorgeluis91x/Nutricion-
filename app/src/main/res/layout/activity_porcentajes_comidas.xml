@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="center.innovus.nutriassist.Activities.PorcentajesComidasActivity">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="25"
+                android:layout_gravity="center_horizontal"
+                android:textSize="35sp"
+                android:paddingTop="25dp"
+                android:id="@+id/fatInGramsTextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+
+                android:text="@string/fatInGramsTextView" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="25"
+                android:layout_gravity="center_horizontal"
+                android:textSize="35sp"
+                android:paddingTop="25dp"
+                android:id="@+id/proteinInGramsTextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/proteinInGramsTextView" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccent"
+                android:text="25"
+                android:layout_gravity="center_horizontal"
+                android:textSize="35sp"
+                android:paddingTop="25dp"
+                android:id="@+id/carbohydratesInGramsTextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/carbohydratesInGramsTextView" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingTop="15dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/breakfast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/morning_snack"
+                android:layout_alignLeft="@+id/morning_snack"
+                android:ems="10"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/breakfast"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingTop="15dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/morning_snack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/lunch"
+                android:layout_alignLeft="@+id/lunch"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:hint="@string/morning_snack"
+                android:inputType="number" />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingTop="15dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:layout_height="wrap_content">
+            <EditText
+            android:id="@+id/lunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignLeft="@+id/afternoon_snack"
+            android:layout_centerVertical="true"
+            android:ems="10"
+            android:hint="@string/lunch"
+            android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingTop="15dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/afternoon_snack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/dinner"
+                android:layout_below="@+id/lunch"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:hint="@string/afternoon_snack"
+                android:inputType="number" />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingTop="15dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/dinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/afternoon_snack"
+                android:layout_centerHorizontal="true"
+                android:ems="10"
+                android:hint="@string/dinner"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:paddingTop="15dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/night_snack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignLeft="@+id/dinner"
+                android:layout_below="@+id/dinner"
+                android:ems="10"
+                android:inputType="number"
+                android:hint="@string/night_snack" />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="8dp"
+        android:layout_gravity="center_horizontal"
+
+        android:layout_height="wrap_content">
+
+
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="8dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content">
+
+
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/dinner"
+        android:background="@color/colorAccent"
+        android:onClick="continuar"
+        android:text="@string/continueButton" />
+
+
+</LinearLayout>

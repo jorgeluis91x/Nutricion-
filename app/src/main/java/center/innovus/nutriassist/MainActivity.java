@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import center.innovus.nutriassist.Activities.AsignarActivity;
 import center.innovus.nutriassist.Activities.ScrollingActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,8 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText etHeight;
     private EditText etActivityFactor;
     private int expectedWeight;
-    private int proteinPercentage;
-    private int proteinInGrams;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +52,8 @@ public class MainActivity extends AppCompatActivity {
                         Snackbar.make(v, R.string.activity_factor_missing_toast, Snackbar.LENGTH_LONG).show();
                     } else {
                         int VCT_ComputedValue = computeVCT();
-                        int percentageOfProtein = calculateProteinPercentage(expectedWeight, VCT_ComputedValue);
-
-                        Intent computedVCT_Intent = new Intent(this, ScrollingActivity.class);
-                        computedVCT_Intent.putExtra("VCT_ComputedValueAndProteinPercentageExtra", new int[] {VCT_ComputedValue, percentageOfProtein});
-                        computedVCT_Intent.putExtra("ProteinInGramsExtra", proteinInGrams);
+                        Intent computedVCT_Intent = new Intent(this, AsignarActivity.class);
+                        computedVCT_Intent.putExtra("VCT_Computed", VCT_ComputedValue);
                         startActivity(computedVCT_Intent);
                     }
                 }
@@ -90,28 +87,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public int calculateProteinPercentage(int patientWeight, int VCT_ComputedValue) {
-
-        float proteinPercentageFloat;
-        float absoluteValue;
-
-        if( sexRadioGroup.getCheckedRadioButtonId() == R.id.radioFemale ){
-            proteinPercentageFloat = (float) patientWeight*400/VCT_ComputedValue;
-            proteinInGrams = patientWeight;
-            absoluteValue = (float) Math.abs(patientWeight*400/VCT_ComputedValue - proteinPercentageFloat);
-        }
-        else {
-            proteinPercentageFloat = (float) patientWeight*110*4/VCT_ComputedValue;
-            proteinInGrams = (int) (patientWeight*1.1);
-            absoluteValue = (float) Math.abs(patientWeight*110*4/VCT_ComputedValue - proteinPercentageFloat);
-        }
-
-        if(absoluteValue >= 0.5) {
-            proteinPercentage = (int) Math.ceil(proteinPercentageFloat);
-            return proteinPercentage;
-        } else {
-            proteinPercentage = (int) Math.floor(proteinPercentageFloat);
-            return proteinPercentage;
-        }
-    }
 }

@@ -31,16 +31,21 @@
     <string name="fat">Grasas (%)</string>
     <string name="carbohydrates">Carbohidratos (%)</string>
     <string name="fat_missing_toast">Por favor ingrese el porcentaje de grasas</string>
-    <string name="carbohydrates_missing_toast">Por favor ingrese el porcentaje</string>
+    <string name="carbohydrates_missing_toast">Por favor ingrese el porcentaje de Carbohidratos</string>
+    <string name="protein_missing_toast">Por favor ingrese el porcentaje de Proteina</string>
     <string name="not_hundred_percent_toast">Los porcentajes deben sumar 100%</string>
+    <string name="sobra_percent_snack">Te Sobra  </string>
+    <string name="falta_percent_snack">Te Falta  </string>
+    <string name="final_percent_snack">Para un 100%</string>
+
     <string name="assignPercentage">Asignar</string>
 
     <!-- THIRD ACTIVITY -->
 
     <string name="title_activity_daily_meals_percentages">Porcentajes de comidas</string>
-    <string name="proteinInGramsTextView">Proteína: </string>
-    <string name="fatInGramsTextView">Grasas: </string>
-    <string name="carbohydratesInGramsTextView">Carbohidratos: </string>
+    <string name="proteinInGramsTextView">Proteína (Gr) </string>
+    <string name="fatInGramsTextView">Grasas (Gr) </string>
+    <string name="carbohydratesInGramsTextView">Carbohidratos(Gr) </string>
     <string name="breakfast">Desayuno</string>
     <string name="morning_snack">Nueves</string>
     <string name="lunch">Almuerzo</string>
@@ -282,5 +287,8 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

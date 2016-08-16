@@ -12,18 +12,10 @@
     tools:context="center.innovus.nutriassist.MainActivity">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Titulo o lo que debe hacer"
-        android:textColor="@color/primary_text"
-        android:gravity="center_horizontal"
-        android:textSize="25sp"
-        android:padding="10dp"
-        android:id="@+id/textView" />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
+        android:paddingTop="10dp"
         android:paddingBottom="8dp"
         android:layout_height="wrap_content">
         <EditText
@@ -126,19 +118,21 @@
         </RadioGroup>
     </LinearLayout>
 
-
-
-
-
-
-
-    <Button
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Calcular VCT"
-        android:background="@color/colorAccent"
-        android:onClick="calculate"
-        android:id="@+id/calculate_TCV" />
+        android:layout_height="match_parent">
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Calcular VCT"
+            android:background="@color/colorAccent"
+            android:onClick="calculate"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/calculate_TCV" />
+
+
+    </RelativeLayout>
 
 
 </LinearLayout>
