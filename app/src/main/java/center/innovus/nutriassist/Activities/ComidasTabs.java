@@ -24,11 +24,31 @@ public class ComidasTabs extends AppCompatActivity {
     MyPagerAdapter adapterViewPager;
     int dummyInt;
 
+    private int desayuno;
+    private int nueves;
+    private int almuerzo;
+    private int onces;
+    private int cena;
+    private int refrigerio;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comidas_tabs);
+
+        final int[] dailyMealsInGrams = getIntent().getExtras().getIntArray("mealsInGramsExtra");
+
+        desayuno = dailyMealsInGrams[0];
+        nueves = dailyMealsInGrams[1];
+        almuerzo = dailyMealsInGrams[2];
+        onces = dailyMealsInGrams[3];
+        cena = dailyMealsInGrams[4];
+        refrigerio = dailyMealsInGrams[5];
+
 
 
        /* FragmentPagerItems pages = new FragmentPagerItems(this);
@@ -59,7 +79,7 @@ public class ComidasTabs extends AppCompatActivity {
                 .create());*/
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
+        adapterViewPager = new MyPagerAdapter(desayuno,nueves,almuerzo,onces,cena,refrigerio,getSupportFragmentManager());
         viewPager.setAdapter(adapterViewPager);
         /*
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -96,9 +116,17 @@ public class ComidasTabs extends AppCompatActivity {
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 6;
+        private int desayuno, nueves, almuerzo, onces, cena, refrigerio;
 
-        public MyPagerAdapter(FragmentManager fragmentManager) {
+        public MyPagerAdapter(int desayuno,int nueves,int almuerzo, int onces, int cena, int refrigerio,FragmentManager fragmentManager) {
             super(fragmentManager);
+            this.desayuno = desayuno;
+            this.almuerzo =almuerzo;
+            this.cena = cena;
+            this.nueves = nueves;
+            this.refrigerio = refrigerio;
+            this.onces = onces;
+
         }
 
         // Returns total number of pages
@@ -113,17 +141,17 @@ public class ComidasTabs extends AppCompatActivity {
 
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    return ComidasFragment.newInstance(100, "Desayuno");
+                    return ComidasFragment.newInstance(desayuno, "Desayuno");
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return ComidasFragment.newInstance(1, "Nueves");
+                    return ComidasFragment.newInstance(nueves, "Nueves");
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    return ComidasFragment.newInstance(2, "Almuerzo");
+                    return ComidasFragment.newInstance(almuerzo, "Almuerzo");
                 case 3: // Fragment # 1 - This will show SecondFragment
-                    return ComidasFragment.newInstance(3, "Onces");
+                    return ComidasFragment.newInstance(onces, "Onces");
                 case 4: // Fragment # 1 - This will show SecondFragment
-                    return ComidasFragment.newInstance(4, "Cena");
+                    return ComidasFragment.newInstance(cena, "Cena");
                 case 5: // Fragment # 1 - This will show SecondFragment
-                    return ComidasFragment.newInstance(5, "Refrigerio");
+                    return ComidasFragment.newInstance(refrigerio, "Refrigerio");
                 default:
                     return null;
             }

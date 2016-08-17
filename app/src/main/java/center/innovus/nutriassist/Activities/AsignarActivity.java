@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,13 +23,13 @@ public class AsignarActivity extends AppCompatActivity {
     private EditText etCarbohydratePercentage;
     private EditText etProteinPercentage;
 
-    private int VCT_Computed;
-    private int proteinInGrams;
-    private int fatInGrams;
-    private int carbohydratesInGrams;
-    private int fatPercentage;
-    private int CarbohydratePercentage;
-    private int proteinPercentage;
+    private float VCT_Computed;
+    private float fatInGrams;
+    private float carbohydratesInGrams;
+    private float proteinInGrams;
+    private float fatPercentage;
+    private float CarbohydratePercentage;
+    private float proteinPercentage;
 
 
    // private int[] VCT_ComputedValueAndProteinPercentage;
@@ -41,10 +42,18 @@ public class AsignarActivity extends AppCompatActivity {
         etProteinPercentage = (EditText) findViewById(R.id.protein_percentage);
         etFatPercentage = (EditText) findViewById(R.id.fat);
         VCT_Computed = getIntent().getExtras().getInt("VCT_Computed");
+        proteinInGrams = getIntent().getExtras().getInt("ProteinGrams");
         tvComputedVCT = (TextView) findViewById(R.id.result_VCT);
-        tvComputedVCT.setText(String.valueOf(VCT_Computed + ""));
+        tvComputedVCT.setText(String.valueOf(Math.round(VCT_Computed) + ""));
         tvNotAssignedPercentage = (TextView) findViewById(R.id.tvNotAssignedPercentage);
         tvNotAssignedPercentage.setText(String.valueOf(100));
+
+
+        Log.e("numero",((proteinInGrams*400)/VCT_Computed) +"");
+        proteinPercentage = Math.round((proteinInGrams*400)/VCT_Computed);
+        etProteinPercentage.setText(""+Math.round(proteinPercentage));
+
+        tvNotAssignedPercentage.setText("" + Math.round(100-proteinPercentage));
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -76,11 +85,11 @@ public class AsignarActivity extends AppCompatActivity {
 
     public void assignMacroNutrientsPercentages(int VCT_ComputedValue){
 
-        proteinInGrams =  Integer.parseInt(etProteinPercentage.getText().toString())*VCT_ComputedValue/400; //getIntent().getExtras().getInt("ProteinInGramsExtra");
+       // proteinInGrams =  Integer.parseInt(etProteinPercentage.getText().toString())*VCT_ComputedValue/400; //getIntent().getExtras().getInt("ProteinInGramsExtra");
         fatInGrams =  Integer.parseInt(etFatPercentage.getText().toString())*VCT_ComputedValue/900;
         carbohydratesInGrams =  Integer.parseInt(etCarbohydratePercentage.getText().toString())*VCT_ComputedValue/400;
         Intent carbohydratesInGramsIntent = new Intent(AsignarActivity.this, PorcentajesComidasActivity.class);
-        carbohydratesInGramsIntent.putExtra("macronutrientsInGramsExtra", new int[] {proteinInGrams, fatInGrams, carbohydratesInGrams});
+        carbohydratesInGramsIntent.putExtra("macronutrientsInGramsExtra", new int[] {Math.round(proteinInGrams), Math.round(fatInGrams), Math.round(carbohydratesInGrams)});
         startActivity(carbohydratesInGramsIntent);
     }
     public void btnAssignar(View v){
@@ -101,7 +110,7 @@ public class AsignarActivity extends AppCompatActivity {
                     if (fatPercentage + CarbohydratePercentage + proteinPercentage != 100) {
                         Snackbar.make(v, R.string.not_hundred_percent_toast, Snackbar.LENGTH_LONG).show();
                     } else {
-                        assignMacroNutrientsPercentages(VCT_Computed);
+                        assignMacroNutrientsPercentages(Math.round(VCT_Computed));
                     }
 
                 }
@@ -117,17 +126,17 @@ public class AsignarActivity extends AppCompatActivity {
         }else{
             fatPercentage = Integer.parseInt(etFatPercentage.getText().toString());
         }
-        if(etProteinPercentage.getText().toString().trim().length() == 0){
+        /*if(etProteinPercentage.getText().toString().trim().length() == 0){
             proteinPercentage = 0;
         }else{
             proteinPercentage = Integer.parseInt(etProteinPercentage.getText().toString());
-        }
+        }*/
         if(etCarbohydratePercentage.getText().toString().trim().length() == 0){
             CarbohydratePercentage = 0;
         }else {
             CarbohydratePercentage = Integer.parseInt(etCarbohydratePercentage.getText().toString());
         }
-        tvNotAssignedPercentage.setText("" + (100-(fatPercentage + proteinPercentage + CarbohydratePercentage)));
+        tvNotAssignedPercentage.setText("" + Math.round(100 - (fatPercentage + proteinPercentage + CarbohydratePercentage)));
 
 
     }

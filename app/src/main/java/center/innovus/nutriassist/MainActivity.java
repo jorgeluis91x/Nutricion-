@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                         int VCT_ComputedValue = computeVCT();
                         Intent computedVCT_Intent = new Intent(this, AsignarActivity.class);
                         computedVCT_Intent.putExtra("VCT_Computed", VCT_ComputedValue);
+                        computedVCT_Intent.putExtra("ProteinGrams", Integer.parseInt(etExpectedWeight.getText().toString()));
                         startActivity(computedVCT_Intent);
                     }
                 }
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         float height = Float.parseFloat(etHeight.getText().toString());
         float activityFactor = Float.parseFloat(etActivityFactor.getText().toString());
         float age = Float.parseFloat(etAge.getText().toString());
-        expectedWeight = (int) Integer.parseInt(etExpectedWeight.getText().toString());
+        expectedWeight = Integer.parseInt(etExpectedWeight.getText().toString());
 
         sexRadioGroup = (RadioGroup) findViewById(R.id.radioGroupSex);
 
