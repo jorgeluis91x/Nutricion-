@@ -12,12 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import center.innovus.nutriassist.MainActivity;
@@ -38,6 +40,9 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
     private int itemLayoutHijo;
     private Activity activity;
 
+    private int[] groupStatus;
+    Boolean isActive = false;
+
 
     public AlimentosExpandibleAdapter(Activity context, ArrayList<Categorias> parent, int itemLayoutPadre, int itemLayoutHijo){
         activity = context;
@@ -45,6 +50,8 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
         inflater = LayoutInflater.from(context);
         this.itemLayoutHijo = itemLayoutHijo;
         this.itemLayoutPadre = itemLayoutPadre;
+
+        groupStatus = new int[parent.size()];
 
     }
     @Override
@@ -135,10 +142,10 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick( final View view) {
 
               //  View grupo = getGroupView(groupPosition,true,view,viewGroup);
-
+/*
                 for( int  j = 0; j< getChildrenCount(groupPosition); j++){
                     boolean isLastChildd = false;
                     if(j == getChildrenCount(groupPosition)-1) isLastChildd = true;
@@ -152,14 +159,14 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
                 }else{
                     view.setSelected(true);
 
-                }
+                }*/
 
 
 
 
 
                // onCreateDialog(activity);
-/*
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                 // Get the layout inflater
                 LayoutInflater inflater = activity.getLayoutInflater();
@@ -171,6 +178,14 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
                         .setPositiveButton("Seleccionar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
+
+                                if (view.isSelected()){
+                                    view.setSelected(false);
+
+                                }else{
+                                    view.setSelected(true);
+
+                                }
                                 // sign in the user ...
                             }
                         })
@@ -181,7 +196,7 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
                         });
                 builder.create().show();
 
-*/
+
 
 
                /* Intent i = new Intent (view.getContext(), MainActivity.class);
