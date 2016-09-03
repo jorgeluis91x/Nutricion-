@@ -197,6 +197,14 @@
         <item>Tomate</item>
         <item>Zanahoria</item>
     </string-array>
+
+    <string-array name="Porciones">
+        <item>0 Porciones</item>
+        <item>1/2 Porcion</item>
+        <item>1 Porcion</item>
+
+    </string-array>
+
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"

@@ -45,11 +45,5 @@ public class AlimentosTask extends AsyncTask<Void, Void, ArrayList<Categorias>> 
 
         return categorias;
     }
-    @Override
-    protected void onPostExecute(ArrayList<Categorias> result) {
 
-        ExpandableListView mExpandableList = (ExpandableListView)activity.findViewById(R.id.expandableListView);
-        final AlimentosExpandibleAdapter mAdaptador= new AlimentosExpandibleAdapter(activity,result,R.layout.row_categoria,R.layout.row_productos);
-        mExpandableList.setAdapter(mAdaptador);
-    }
 }

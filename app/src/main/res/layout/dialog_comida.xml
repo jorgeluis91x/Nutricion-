@@ -11,8 +11,7 @@
 
         android:contentDescription="@string/app_name" />
     <TextView
-        android:id="@+id/username"
-        android:inputType="textEmailAddress"
+        android:id="@+id/name_dialogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -21,12 +20,9 @@
         android:layout_marginBottom="2dp"
         android:paddingLeft="4dp"
         android:textColor="@color/primary_text"
-        android:textSize="20sp"
-
-        android:hint="Menudencias de Pollo" />
+        android:textSize="20sp" />
     <TextView
-        android:id="@+id/password"
-        android:inputType="textPassword"
+        android:id="@+id/calorias_dialogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="4dp"
@@ -36,4 +32,10 @@
         android:layout_marginBottom="2dp"
         android:fontFamily="sans-serif"
         android:hint="31 Gramos de CHO por porcion"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerPorciones" />
+
 </LinearLayout>

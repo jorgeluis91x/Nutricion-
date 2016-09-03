@@ -2,30 +2,33 @@ package center.innovus.nutriassist.Adapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
+
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ExpandableListView;
+
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
-import center.innovus.nutriassist.MainActivity;
+import center.innovus.nutriassist.Fragments.ComidasFragment;
 import center.innovus.nutriassist.Models.Alimentos;
 import center.innovus.nutriassist.Models.Categorias;
 
+import center.innovus.nutriassist.Models.Receta;
 import  center.innovus.nutriassist.R;
 
 /**
@@ -34,24 +37,24 @@ import  center.innovus.nutriassist.R;
 public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
 
     private LayoutInflater inflater;
-    private ArrayList<Categorias> mParent;
+    private List<Categorias> mParent;
     private ArrayList<ArrayList<Alimentos>> mHijos; // Alumnos por grupo.
     private int itemLayoutPadre;
     private int itemLayoutHijo;
     private Activity activity;
+    private ComidasFragment fragment;
+    private Receta receta;
 
-    private int[] groupStatus;
-    Boolean isActive = false;
 
-
-    public AlimentosExpandibleAdapter(Activity context, ArrayList<Categorias> parent, int itemLayoutPadre, int itemLayoutHijo){
+    public AlimentosExpandibleAdapter(Activity context, Receta parent, int itemLayoutPadre, int itemLayoutHijo, ComidasFragment cm){
         activity = context;
-        mParent = parent;
+        receta = parent;
+        mParent = parent.getCategorias();
         inflater = LayoutInflater.from(context);
         this.itemLayoutHijo = itemLayoutHijo;
         this.itemLayoutPadre = itemLayoutPadre;
+        this.fragment =cm;
 
-        groupStatus = new int[parent.size()];
 
     }
     @Override
@@ -103,6 +106,7 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
         textView.setText(getGroup(groupPosition).toString());
 
 
+
         view.setTag(holder);
 
         //return the entire view
@@ -112,16 +116,36 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(final int groupPosition, final int childPosition, final boolean isLastChild, View view, final ViewGroup viewGroup) {
-        ViewHolder holder = new ViewHolder();
-        holder.childPosition = childPosition;
+        final ChildHolder childHolder;
+        /*holder.childPosition = childPosition;
         holder.groupPosition = groupPosition;
-
+*/
         if (view == null) {
             view = inflater.inflate(itemLayoutHijo, viewGroup,false);
+            childHolder = new ChildHolder();
+            childHolder.descProducto = (TextView) view.findViewById(R.id.descProducto);
+            childHolder.spinner = (TextView) view.findViewById(R.id.porcion);
+            childHolder.name = (TextView) view.findViewById(R.id.list_item_text_child);
+            childHolder.childPosition = childPosition;
+            childHolder.linearLayout = (LinearLayout) view.findViewById(R.id.linearselector);
+            childHolder.isSelected = mParent.get(groupPosition).getAlimentos().get(childPosition).getIsSelected();
+            view.setTag(childHolder);
+
+            //view.setSelected(mParent.get(groupPosition).getAlimentos().get(childPosition).getIsSelected());
+
+
+        }else {
+            childHolder = (ChildHolder) view.getTag();
+
         }
 
-        TextView producto = (TextView) view.findViewById(R.id.list_item_text_child);
-        producto.setText(mParent.get(groupPosition).getAlimentos().get(childPosition).getNombre());
+        childHolder.name.setText(mParent.get(groupPosition).getAlimentos().get(childPosition).getNombre());
+        childHolder.descProducto.setText(mParent.get(groupPosition).getAlimentos().get(childPosition).getCarbohidratos() + " gramos de CHO por porcion");
+        if(mParent.get(groupPosition).getAlimentos().get(childPosition).getIsSelected())childHolder.linearLayout.setBackgroundResource(R.color.colorPrimaryDark);
+        else childHolder.linearLayout.setBackgroundResource(R.color.fondo);
+        if(mParent.get(groupPosition).getAlimentos().get(childPosition).getPorcionesElegidas()==1)childHolder.spinner.setText("1 Porcion");
+        else if (mParent.get(groupPosition).getAlimentos().get(childPosition).getPorcionesElegidas()==0.5)childHolder.spinner.setText("1/2 Porcion");
+        else childHolder.spinner.setText("");
 
         ImageView imgGallery =  (ImageView)  view.findViewById(R.id.imgrewards);
 
@@ -131,61 +155,76 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
                 .error(R.drawable.almojabana)
                 .into(imgGallery);
 
-        TextView descripcion = (TextView) view.findViewById(R.id.descProducto);
-        /*descripcion.setText("" + mParent.get(groupPosition).getAlimentos().get(childPosition).getCantidad());
-        TextView precio = (TextView) view.findViewById(R.id.txtPrecio);
 
-        //fmt formatea para q no halllan ceros despues de un punto en un numero float
-
-        precio.setText("djdj");*/
-        //textView.setText(mParent.get(groupPosition).getArrayChildren().get(childPosition));
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick( final View view) {
 
-              //  View grupo = getGroupView(groupPosition,true,view,viewGroup);
-/*
-                for( int  j = 0; j< getChildrenCount(groupPosition); j++){
-                    boolean isLastChildd = false;
-                    if(j == getChildrenCount(groupPosition)-1) isLastChildd = true;
-
-                    getChildView(groupPosition,j, isLastChildd, null, viewGroup).setSelected(false);
-
-                }
-                if (view.isSelected()){
-                    view.setSelected(false);
-
-                }else{
-                    view.setSelected(true);
-
-                }*/
-
-
-
-
-
-               // onCreateDialog(activity);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                 // Get the layout inflater
                 LayoutInflater inflater = activity.getLayoutInflater();
 
-                // Inflate and set the layout for the dialog
-                // Pass null as the parent view because its going in the dialog layout
-                builder.setView(inflater.inflate(R.layout.dialog_comida, null))
+
+                View viewDialogo = inflater.inflate(R.layout.dialog_comida, null);
+
+                final Spinner spinnerCarnes = (Spinner) viewDialogo.findViewById( R.id.spinnerPorciones );
+                ArrayAdapter<CharSequence> adapterCarnes = ArrayAdapter.createFromResource(
+                        viewDialogo.getContext(), R.array.Porciones, R.layout.dropdown_item);
+                spinnerCarnes.setAdapter( adapterCarnes );
+
+                double cantPorcionesArreglo = mParent.get(groupPosition).getAlimentos().get(childPosition).getPorcionesElegidas();
+                if(cantPorcionesArreglo == 0) spinnerCarnes.setSelection(0);
+                else if(cantPorcionesArreglo == 0.5) spinnerCarnes.setSelection(1);
+                else spinnerCarnes.setSelection(2);
+
+
+
+
+                TextView tvCalorias= (TextView) viewDialogo.findViewById(R.id.calorias_dialogo);
+                TextView tvName= (TextView) viewDialogo.findViewById(R.id.name_dialogo);
+                tvName.setText(mParent.get(groupPosition).getAlimentos().get(childPosition).getNombre());
+                tvCalorias.setText(mParent.get(groupPosition).getAlimentos().get(childPosition).getCarbohidratos() + " Gramos de CHO por porcion");
+
+
+
+                builder.setView(viewDialogo)
+
+
                         // Add action buttons
                         .setPositiveButton("Seleccionar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
+                               // view.setSelected(!view.isSelected());
+                                mParent.get(groupPosition).getAlimentos().get(childPosition).setNombre("Prueba azy");
+                                mParent.get(groupPosition).getAlimentos().get(childPosition).changeSelected();
 
-                                if (view.isSelected()){
-                                    view.setSelected(false);
+                                view.setSelected(mParent.get(groupPosition).getAlimentos().get(childPosition).getIsSelected());
+                                ChildHolder chi = (ChildHolder) view.getTag();
 
+                                String elementoSpinner = spinnerCarnes.getSelectedItem().toString();
+                                double elegidoSpinner = 0;
+                                if(elementoSpinner.equals("1 Porcion")) {
+                                    elegidoSpinner = 1;
+                                    chi.linearLayout.setBackgroundResource(R.color.colorPrimaryDark);
+                                }else if (elementoSpinner.equals("1/2 Porcion")) {
+                                    elegidoSpinner = 0.5;
+                                    chi.linearLayout.setBackgroundResource(R.color.colorPrimaryDark);
                                 }else{
-                                    view.setSelected(true);
+                                    chi.linearLayout.setBackgroundResource(R.color.fondo);
+                                    elementoSpinner = "";
 
                                 }
+
+                                fragment.setPorcion(mParent.get(groupPosition).getAlimentos().get(childPosition).getCarbohidratos(),mParent.get(groupPosition).getAlimentos().get(childPosition).getPorcionesElegidas(),elegidoSpinner);
+                                fragment.setReceta(receta);
+                                mParent.get(groupPosition).getAlimentos().get(childPosition).setPorcionesElegidas(elegidoSpinner);
+                                chi.spinner.setText(elementoSpinner);
+                                view.setTag(chi);
+
+
+
                                 // sign in the user ...
                             }
                         })
@@ -218,7 +257,7 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
             }
         });
 
-        view.setTag(holder);
+        //view.setTag(holder);
 
         //return the entire view
         return view;
@@ -229,31 +268,22 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-    public Dialog onCreateDialog(Activity activity) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        // Get the layout inflater
-        LayoutInflater inflater = activity.getLayoutInflater();
-
-        // Inflate and set the layout for the dialog
-        // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.dialog_comida, null))
-                // Add action buttons
-                .setPositiveButton("Seleccionar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        // sign in the user ...
-                    }
-                })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                       //LoginDialogFragment.this.getDialog().cancel();
-                    }
-                });
-        return builder.create();
+    public Receta getReceta(){
+        return receta;
     }
 
+
+
     public static class ViewHolder {
-        int childPosition;
+       // int childPosition;
         int groupPosition;
+    }
+    public static class ChildHolder{
+        int childPosition;
+        TextView name;
+        boolean isSelected;
+        LinearLayout linearLayout;
+        TextView spinner;
+        TextView descProducto;
     }
 }

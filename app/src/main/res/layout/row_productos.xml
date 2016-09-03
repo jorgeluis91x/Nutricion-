@@ -10,7 +10,6 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/my_selector"
         android:id="@+id/linearselector"
         android:paddingLeft="40dp"
         android:paddingRight="20dp"
@@ -37,9 +36,13 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="31 gramos de CHO por porcion "
-
-
                 android:id="@+id/descProducto" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:id="@+id/porcion" />
         </LinearLayout>
 
         <LinearLayout
