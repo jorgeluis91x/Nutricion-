@@ -8,7 +8,7 @@ import android.os.Parcelable;
  */
 public class Alimentos implements Parcelable {
     private String nombre;
-    private String imagen;
+    private int imagen;
     private int cantidad;
     private int proteinas;
     private int grasas;
@@ -20,7 +20,7 @@ public class Alimentos implements Parcelable {
     public Alimentos(){
 
     }
-    public Alimentos(String nombre,  int cantidad, int proteinas, int grasas, int carbohidratos,String imagen) {
+    public Alimentos(String nombre,  int cantidad, int proteinas, int grasas, int carbohidratos,int imagen) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.cantidad = cantidad;
@@ -35,14 +35,16 @@ public class Alimentos implements Parcelable {
 
     protected Alimentos(Parcel in) {
         nombre = in.readString();
-        imagen = in.readString();
+        imagen = in.readInt();
         pe = in.readString();
         cantidad = in.readInt();
         proteinas = in.readInt();
         grasas = in.readInt();
-        porcionesElegidas = in.readDouble();
         carbohidratos = in.readInt();
+        porcionesElegidas = in.readDouble();
         isSelected = in.readByte() != 0;
+
+
 
     }
 
@@ -95,11 +97,11 @@ public class Alimentos implements Parcelable {
         this.nombre = nombre;
     }
 
-    public String getImagen() {
+    public int getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(int imagen) {
         this.imagen = imagen;
     }
 
@@ -152,7 +154,7 @@ public class Alimentos implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(this.nombre);
-        parcel.writeString(this.imagen);
+        parcel.writeInt(this.imagen);
         parcel.writeString(this.pe);
         parcel.writeInt(this.cantidad);
         parcel.writeInt(this.proteinas);

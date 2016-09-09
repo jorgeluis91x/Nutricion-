@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ExpandableListView
+        android:layout_width="match_parent"
+        android:layout_height="350sp"
+        android:id="@+id/expandableListViewReporte"
+        android:cacheColorHint="@color/colorAccent"
+        android:transcriptMode="alwaysScroll"
+        android:listSelector="@android:color/transparent"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/viewpagerreporte"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Total"
+            android:textSize="25sp"
+            android:padding="16dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            />
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:gravity="center_horizontal"
+                android:paddingBottom="4dp"
+                android:paddingRight="16dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"
+                android:text="31 Gr"
+                android:id="@+id/amountc" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:gravity="center_horizontal"
+                android:paddingBottom="4dp"
+                android:paddingRight="16dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="4dp"
+                android:text="Carbohidratos"
+
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

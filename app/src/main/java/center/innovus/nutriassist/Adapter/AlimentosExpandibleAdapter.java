@@ -129,6 +129,7 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
             childHolder.childPosition = childPosition;
             childHolder.linearLayout = (LinearLayout) view.findViewById(R.id.linearselector);
             childHolder.isSelected = mParent.get(groupPosition).getAlimentos().get(childPosition).getIsSelected();
+            childHolder.imageView = (ImageView)  view.findViewById(R.id.imgrewards);
             view.setTag(childHolder);
 
             //view.setSelected(mParent.get(groupPosition).getAlimentos().get(childPosition).getIsSelected());
@@ -147,13 +148,11 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
         else if (mParent.get(groupPosition).getAlimentos().get(childPosition).getPorcionesElegidas()==0.5)childHolder.spinner.setText("1/2 Porcion");
         else childHolder.spinner.setText("");
 
-        ImageView imgGallery =  (ImageView)  view.findViewById(R.id.imgrewards);
-
 
         Picasso.with(view.getContext())
-                .load(R.drawable.almojabana)
-                .error(R.drawable.almojabana)
-                .into(imgGallery);
+                .load(mParent.get(groupPosition).getAlimentos().get(childPosition).getImagen())
+                .error(R.drawable.aceite)
+                .into(childHolder.imageView);
 
 
 
@@ -170,6 +169,14 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
                 View viewDialogo = inflater.inflate(R.layout.dialog_comida, null);
 
                 final Spinner spinnerCarnes = (Spinner) viewDialogo.findViewById( R.id.spinnerPorciones );
+                final ImageView imageDialogo  = (ImageView) viewDialogo.findViewById(R.id.imageDialogo);
+
+                Picasso.with(view.getContext())
+                        .load(mParent.get(groupPosition).getAlimentos().get(childPosition).getImagen())
+                        .error(R.drawable.aceite)
+                        .into(imageDialogo);
+
+
                 ArrayAdapter<CharSequence> adapterCarnes = ArrayAdapter.createFromResource(
                         viewDialogo.getContext(), R.array.Porciones, R.layout.dropdown_item);
                 spinnerCarnes.setAdapter( adapterCarnes );
@@ -197,7 +204,6 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                // view.setSelected(!view.isSelected());
-                                mParent.get(groupPosition).getAlimentos().get(childPosition).setNombre("Prueba azy");
                                 mParent.get(groupPosition).getAlimentos().get(childPosition).changeSelected();
 
                                 view.setSelected(mParent.get(groupPosition).getAlimentos().get(childPosition).getIsSelected());
@@ -285,5 +291,6 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
         LinearLayout linearLayout;
         TextView spinner;
         TextView descProducto;
+        ImageView imageView;
     }
 }

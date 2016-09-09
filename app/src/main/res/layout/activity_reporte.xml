@@ -33,25 +33,12 @@
         app:stl_defaultTabTextSize="12sp"
         app:stl_defaultTabTextHorizontalPadding="16dp"
         app:stl_defaultTabTextMinWidth="0dp"
-
         app:stl_distributeEvenly="true"
         app:stl_clickable="true"
         app:stl_titleOffset="24dp"
         app:stl_drawDecorationAfterTab="false"
-
         />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Continuar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:onClick="reporteOnClick"
-        android:id="@+id/calculate_TCV" />
+
 
 
     <android.support.v4.view.ViewPager
@@ -61,5 +48,7 @@
         android:layout_above="@id/calculate_TCV"
         android:layout_below="@id/viewpagertabreporte"
         />
+
+
 
 </RelativeLayout>

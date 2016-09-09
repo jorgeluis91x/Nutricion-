@@ -31,7 +31,7 @@ public class AlimentosTask extends AsyncTask<Void, Void, ArrayList<Categorias>> 
     protected ArrayList<Categorias> doInBackground(Void... params) {
 
         ArrayList<Alimentos> alimentos =  new ArrayList<Alimentos>();
-        alimentos.add(new Alimentos("Azúcar",4,0,0,4,"Azucar.jpg"));
+       /* alimentos.add(new Alimentos("Azúcar",4,0,0,4,"Azucar.jpg"));
         alimentos.add(new Alimentos("Azúcar",4,0,0,4,"Azucar.jpg"));
         alimentos.add(new Alimentos("Azúcar",4,0,0,4,"Azucar.jpg"));
         alimentos.add(new Alimentos("Azúcar",4,0,0,4,"Azucar.jpg"));
@@ -41,8 +41,8 @@ public class AlimentosTask extends AsyncTask<Void, Void, ArrayList<Categorias>> 
         categorias.add(new Categorias("Prueba",alimentos));
         categorias.add(new Categorias("Prueba2",alimentos));
 
-
-
+*/
+        ArrayList<Categorias> categorias =new ArrayList<Categorias>();
         return categorias;
     }
 

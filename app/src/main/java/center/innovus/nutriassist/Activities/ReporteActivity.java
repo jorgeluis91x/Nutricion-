@@ -1,16 +1,31 @@
 package center.innovus.nutriassist.Activities;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import java.util.ArrayList;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
+
+import center.innovus.nutriassist.Fragments.ReportesFragment;
 import center.innovus.nutriassist.Models.Alimentos;
 import center.innovus.nutriassist.Models.Categorias;
 import center.innovus.nutriassist.Models.Receta;
+import center.innovus.nutriassist.Models.Reporte;
 import center.innovus.nutriassist.R;
 
 public class ReporteActivity extends AppCompatActivity {
+    MyPagerAdapter adapterViewPager;
+    int dummyInt;
+
+
+    private ArrayList<ReportesFragment> reportesFragments = new ArrayList<ReportesFragment>();
 
 
     @Override
@@ -36,21 +51,21 @@ public class ReporteActivity extends AppCompatActivity {
         addReceta(recetas,object4);
         addReceta(recetas,object5);
 
-        addReceta(recetas,object0);
 
 
 
 
 
 
-        /*
+
+
     //elmina elementos no validos
-        Iterator recetas = recetasFinal.iterator();
+        Iterator recetasIterator = recetas.iterator();
         //recorre recetas
-        while(recetas.hasNext()){
+        while(recetasIterator.hasNext()){
 
 
-            Receta receta = (Receta) recetas.next();
+            Receta receta = (Receta) recetasIterator.next();
             Iterator categorias = receta.getCategorias().iterator();
 
             //reccorre categorias
@@ -73,9 +88,9 @@ public class ReporteActivity extends AppCompatActivity {
 
         //        Iterator recetas = recetasFinal.iterator();
         //recorre recetas para eliminar categorias vacios
-        recetas = recetasFinal.iterator();
-        while(recetas.hasNext()){
-            Receta receta = (Receta) recetas.next();
+        recetasIterator = recetas.iterator();
+        while(recetasIterator.hasNext()){
+            Receta receta = (Receta) recetasIterator.next();
             Iterator categorias = receta.getCategorias().iterator();
 
             //reccorre categorias
@@ -91,17 +106,23 @@ public class ReporteActivity extends AppCompatActivity {
 
         }
 
-        recetas = recetasFinal.iterator();
-        while(recetas.hasNext()){
+        recetasIterator = recetas.iterator();
+        while(recetasIterator.hasNext()){
 
-            Receta receta = (Receta) recetas.next();
+            Receta receta = (Receta) recetasIterator.next();
 
             if(receta.getCategorias().size() == 0){
-                recetas.remove();
+                recetasIterator.remove();
             }
 
         }
-*/
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpagerreporte);
+        adapterViewPager = new MyPagerAdapter(recetas,getSupportFragmentManager(),reportesFragments);
+        viewPager.setAdapter(adapterViewPager);
+
+        SmartTabLayout viewPagerTab = (SmartTabLayout) findViewById(R.id.viewpagertabreporte);
+        viewPagerTab.setViewPager(viewPager);
 
        // Receta prueba4 = object;
         //ArrayList<Receta> recetas =  (ArrayList<Receta>) getIntent().getSerializableExtra("recetas");
@@ -113,6 +134,43 @@ public class ReporteActivity extends AppCompatActivity {
     public ArrayList<Receta> addReceta(ArrayList<Receta> recetas,Receta receta){
         if(receta !=null) recetas.add(receta);
         return recetas;
+    }
+
+    public static class MyPagerAdapter extends FragmentPagerAdapter {
+        private static int NUM_ITEMS = 0;
+        private ArrayList<ReportesFragment> cm ;
+        private ArrayList<Receta> recetas;
+
+        public MyPagerAdapter( ArrayList<Receta> recetas,FragmentManager fragmentManager, ArrayList<ReportesFragment> cm) {
+            super(fragmentManager);
+            this.cm = cm;
+            this.recetas = recetas;
+            NUM_ITEMS=recetas.size();
+
+        }
+
+        // Returns total number of pages
+        @Override
+        public int getCount() {
+            return NUM_ITEMS;
+        }
+
+        // Returns the fragment to display for that page
+        @Override
+        public Fragment getItem(int position) {
+
+            ReportesFragment cm1 = ReportesFragment.newInstance(recetas.get(position).getTab(),recetas.get(position));
+            this.cm.add(cm1);
+            return cm1;
+
+
+        }
+
+        // Returns the page title for the top indicator
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return recetas.get(position).getTab();
+        }
 
     }
 }
