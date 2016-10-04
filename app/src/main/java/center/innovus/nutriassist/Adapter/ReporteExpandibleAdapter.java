@@ -117,6 +117,7 @@ public class ReporteExpandibleAdapter extends BaseExpandableListAdapter {
             childHolder.amountPorcion = (TextView) view.findViewById(R.id.amout_porcion);
             childHolder.name = (TextView) view.findViewById(R.id.name_food);
             childHolder.childPosition = childPosition;
+            childHolder.imageView = (ImageView)  view.findViewById(R.id.imgreporte);
             view.setTag(childHolder);
 
 
@@ -133,6 +134,10 @@ public class ReporteExpandibleAdapter extends BaseExpandableListAdapter {
             childHolder.amountPorcion.setText("1/2 Porcion");
         double calculate = mParent.get(groupPosition).getAlimentos().get(childPosition).getCarbohidratos() * mParent.get(groupPosition).getAlimentos().get(childPosition).getPorcionesElegidas();
         childHolder.amountGrams.setText(calculate + " Gr");
+        Picasso.with(view.getContext())
+                .load(mParent.get(groupPosition).getAlimentos().get(childPosition).getImagen())
+                .error(R.drawable.aceite)
+                .into(childHolder.imageView);
 
         return view;
     }
@@ -157,5 +162,6 @@ public class ReporteExpandibleAdapter extends BaseExpandableListAdapter {
         TextView name;
         TextView amountPorcion;
         TextView amountGrams;
+        ImageView imageView;
     }
 }

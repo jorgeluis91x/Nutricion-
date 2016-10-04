@@ -50,16 +50,17 @@
         android:paddingBottom="8dp"
         android:paddingTop="25dp"
         android:layout_height="wrap_content">
-    <EditText
-        android:id="@+id/protein_percentage"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:editable="false"
-        android:enabled="false"
-        android:hint="@string/tv_protein_percentage"
-        android:inputType="number" />
+
+        <EditText
+            android:id="@+id/protein_percentage"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:editable="false"
+            android:enabled="false"
+            android:hint="@string/tv_protein_percentage"
+            android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout

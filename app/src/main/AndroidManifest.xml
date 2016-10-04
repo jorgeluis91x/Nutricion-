@@ -10,13 +10,17 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activities.SplashScreen"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,16 +31,21 @@
             android:name=".Activities.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="center.innovus.nutriassist.MainActivity" />
         </activity>
-        <activity android:name=".Activities.AsignarActivity" />
-        <activity android:name=".Activities.PorcentajesComidasActivity" />
-        <activity android:name=".Activities.ComidasActivity" />
-        <activity android:name=".Activities.ComidasTabs" />
-        <activity android:name=".Activities.ReporteActivity"></activity>
+        <activity android:name=".Activities.AsignarActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.PorcentajesComidasActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".Activities.ComidasActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.ComidasTabs" android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.ReporteActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
