@@ -6,22 +6,22 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:supportsRtl="true"
         android:largeHeap="true"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activities.SplashScreen"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            >
-
+        <activity
+            android:name=".Activities.CarbohidratosActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,15 +38,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="center.innovus.nutriassist.MainActivity" />
         </activity>
-        <activity android:name=".Activities.AsignarActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.PorcentajesComidasActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".Activities.ComidasActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.ComidasTabs" android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.ReporteActivity" android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activities.AsignarActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.PorcentajesComidasActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.ComidasActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.ComidasTabs"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.ReporteActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
