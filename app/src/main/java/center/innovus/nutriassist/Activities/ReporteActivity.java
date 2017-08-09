@@ -1,11 +1,13 @@
 package center.innovus.nutriassist.Activities;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
@@ -14,6 +16,7 @@ import java.util.Iterator;
 
 
 import center.innovus.nutriassist.Fragments.ReportesFragment;
+import center.innovus.nutriassist.MainActivity;
 import center.innovus.nutriassist.Models.Alimentos;
 import center.innovus.nutriassist.Models.Categorias;
 import center.innovus.nutriassist.Models.Receta;
@@ -28,6 +31,10 @@ public class ReporteActivity extends AppCompatActivity {
     private ArrayList<ReportesFragment> reportesFragments = new ArrayList<ReportesFragment>();
 
 
+    @Override
+    public void onBackPressed() {
+        return;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -171,6 +178,47 @@ public class ReporteActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return recetas.get(position).getTab();
         }
+
+    }
+    public void salir(View v){
+        Intent homeIntent = new Intent(getApplicationContext(), MainActivity.class);
+        homeIntent.addCategory( Intent.CATEGORY_HOME );
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(homeIntent);
+
+       /* moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);*/
+        /*int pid = android.os.Process.myPid();//=====> use this if you want to kill your activity. But its not a good one to do.
+        android.os.Process.killProcess(pid);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+
+        /*this.finish();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
+        int pid = android.os.Process.myPid();//=====> use this if you want to kill your activity. But its not a good one to do.
+    android.os.Process.killProcess(pid);*/
+
+
+       // System.exit(0);
+      /*  finish();
+        System.exit(0);
+
+       /* finish();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        this.finish();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        */
 
     }
 }

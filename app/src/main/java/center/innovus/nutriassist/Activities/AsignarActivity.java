@@ -91,6 +91,7 @@ public class AsignarActivity extends AppCompatActivity {
         Intent carbohydratesInGramsIntent = new Intent(AsignarActivity.this, PorcentajesComidasActivity.class);
         carbohydratesInGramsIntent.putExtra("macronutrientsInGramsExtra", new int[] {Math.round(proteinInGrams), Math.round(fatInGrams), Math.round(carbohydratesInGrams)});
         startActivity(carbohydratesInGramsIntent);
+
     }
     public void btnAssignar(View v){
 

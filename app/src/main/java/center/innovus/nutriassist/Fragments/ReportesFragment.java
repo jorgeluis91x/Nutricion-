@@ -1,6 +1,7 @@
 package center.innovus.nutriassist.Fragments;
 
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -89,6 +90,7 @@ public class ReportesFragment extends Fragment {
         mExpandableList.setAdapter(mAdaptador);
 
     }
+
 
 
 
