@@ -25,6 +25,11 @@ public class CarbohidratosActivity extends AppCompatActivity {
 
     public void agregarCarbohidratos(View v){
 
+        Intent mealsInGramsIntent = new Intent(CarbohidratosActivity.this, ComidasTabs.class);
+        int carbo = Integer.parseInt(etCarbohidratos.getText()+"");
+        mealsInGramsIntent.putExtra("cantCarbohidratos",carbo);
+        startActivity(mealsInGramsIntent);
+
 
     }
 }

@@ -46,14 +46,14 @@ public class ComidasTabs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comidas_tabs);
 
-        final int[] dailyMealsInGrams = getIntent().getExtras().getIntArray("mealsInGramsExtra");
+        final int cantCarbohidratos = getIntent().getIntExtra("cantCarbohidratos",0);
 
-        desayuno = dailyMealsInGrams[0];
-        nueves = dailyMealsInGrams[1];
-        almuerzo = dailyMealsInGrams[2];
-        onces = dailyMealsInGrams[3];
-        cena = dailyMealsInGrams[4];
-        refrigerio = dailyMealsInGrams[5];
+        desayuno = cantCarbohidratos;
+        nueves = cantCarbohidratos;
+        almuerzo = cantCarbohidratos;
+        onces = cantCarbohidratos;
+        cena = cantCarbohidratos;
+        refrigerio = cantCarbohidratos;
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         adapterViewPager = new MyPagerAdapter(desayuno,nueves,almuerzo,onces,cena,refrigerio,getSupportFragmentManager(),comidasFragments);
