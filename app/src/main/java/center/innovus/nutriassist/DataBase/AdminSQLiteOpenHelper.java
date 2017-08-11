@@ -16,12 +16,12 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table usuarios(id INTEGER PRIMARY KEY,identificacion text, carbohidratos numeric)");
+        db.execSQL("create table carbohidrato(id INTEGER PRIMARY KEY,identificacion text, carbohidratos numeric, fecha TIMESTAMP DEFAULT CURRENT_DATE)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int versionAnte, int versionNue) {
-        db.execSQL("drop table if exists usuarios");
-        db.execSQL("create table usuarios(id INTEGER PRIMARY KEY,identificacion text, carbohidratos numeric)");
+        db.execSQL("drop table if exists carbohidrato");
+        db.execSQL("create table carbohidrato(id INTEGER PRIMARY KEY,identificacion text, carbohidratos numeric, fecha DATE DEFAULT CURRENT_DATE)");
     }
 }

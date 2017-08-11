@@ -181,44 +181,17 @@ public class ReporteActivity extends AppCompatActivity {
 
     }
     public void salir(View v){
+
+        /*
         Intent homeIntent = new Intent(getApplicationContext(), MainActivity.class);
         homeIntent.addCategory( Intent.CATEGORY_HOME );
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(homeIntent);
+        startActivity(homeIntent);*/
 
-       /* moveTaskToBack(true);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);*/
-        /*int pid = android.os.Process.myPid();//=====> use this if you want to kill your activity. But its not a good one to do.
-        android.os.Process.killProcess(pid);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
+        Intent promedioIntent = new Intent(ReporteActivity.this, PromedioActivity.class);
+        startActivity(promedioIntent);
 
-        /*this.finish();
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-
-        int pid = android.os.Process.myPid();//=====> use this if you want to kill your activity. But its not a good one to do.
-    android.os.Process.killProcess(pid);*/
-
-
-       // System.exit(0);
-      /*  finish();
-        System.exit(0);
-
-       /* finish();
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        this.finish();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        */
 
     }
 }

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import center.innovus.nutriassist.DataBase.CarbohidratosDao;
+import center.innovus.nutriassist.Models.Carbohidratos;
 import center.innovus.nutriassist.R;
 
 public class CarbohidratosActivity extends AppCompatActivity {
@@ -24,6 +26,11 @@ public class CarbohidratosActivity extends AppCompatActivity {
     }
 
     public void agregarCarbohidratos(View v){
+        String identificacion = etIdentification.getText()+ "";
+        Double carbohidratos = Double.parseDouble( etCarbohidratos.getText()+"");
+
+        CarbohidratosDao carbohidratosDao = new CarbohidratosDao(this);
+        carbohidratosDao.create(new Carbohidratos(identificacion,carbohidratos));
 
         Intent mealsInGramsIntent = new Intent(CarbohidratosActivity.this, ComidasTabs.class);
         int carbo = Integer.parseInt(etCarbohidratos.getText()+"");
