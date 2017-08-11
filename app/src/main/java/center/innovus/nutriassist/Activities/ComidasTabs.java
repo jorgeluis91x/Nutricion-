@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItem;
@@ -26,18 +27,20 @@ import center.innovus.nutriassist.Models.Categorias;
 import center.innovus.nutriassist.Models.Receta;
 import center.innovus.nutriassist.R;
 
-public class ComidasTabs extends AppCompatActivity {
+public class ComidasTabs extends AppCompatActivity  implements ComidasFragment.ComidaSeleccionadaListener{
 
 
     MyPagerAdapter adapterViewPager;
     int dummyInt;
+    TextView tvLabel;
 
     private int desayuno;
-    private int nueves;
+    public double cantCarbohidratos;
+    /*private int nueves;
     private int almuerzo;
     private int onces;
     private int cena;
-    private int refrigerio;
+    private int refrigerio;*/
     private ArrayList<ComidasFragment> comidasFragments = new ArrayList<ComidasFragment>();
 
 
@@ -46,17 +49,20 @@ public class ComidasTabs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comidas_tabs);
 
-        final int cantCarbohidratos = getIntent().getIntExtra("cantCarbohidratos",0);
+        cantCarbohidratos = getIntent().getIntExtra("cantCarbohidratos",0);
 
-        desayuno = cantCarbohidratos;
+        //desayuno = cantCarbohidratos;
+        tvLabel = (TextView) this.findViewById(R.id.grams_not_assigned);
+        tvLabel.setText(getString(R.string.food_grams_not_assigned) + " " + cantCarbohidratos + " gr");
+        /*
         nueves = cantCarbohidratos;
         almuerzo = cantCarbohidratos;
         onces = cantCarbohidratos;
         cena = cantCarbohidratos;
-        refrigerio = cantCarbohidratos;
+        refrigerio = cantCarbohidratos;*/
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        adapterViewPager = new MyPagerAdapter(desayuno,nueves,almuerzo,onces,cena,refrigerio,getSupportFragmentManager(),comidasFragments);
+        adapterViewPager = new MyPagerAdapter(desayuno,/*nueves,almuerzo,onces,cena,refrigerio,*/getSupportFragmentManager(),comidasFragments);
         viewPager.setAdapter(adapterViewPager);
 
         SmartTabLayout viewPagerTab = (SmartTabLayout) findViewById(R.id.viewpagertab);
@@ -66,17 +72,17 @@ public class ComidasTabs extends AppCompatActivity {
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 6;
-        private int desayuno, nueves, almuerzo, onces, cena, refrigerio;
+        private int desayuno/*, nueves, almuerzo, onces, cena, refrigerio*/;
         private ArrayList<ComidasFragment> cm ;
 
-        public MyPagerAdapter(int desayuno,int nueves,int almuerzo, int onces, int cena, int refrigerio,FragmentManager fragmentManager, ArrayList<ComidasFragment> cm) {
+        public MyPagerAdapter(int desayuno,/*int nueves,int almuerzo, int onces, int cena, int refrigerio,*/FragmentManager fragmentManager, ArrayList<ComidasFragment> cm) {
             super(fragmentManager);
             this.desayuno = desayuno;
-            this.almuerzo =almuerzo;
+           /* this.almuerzo =almuerzo;
             this.cena = cena;
             this.nueves = nueves;
             this.refrigerio = refrigerio;
-            this.onces = onces;
+            this.onces = onces;*/
             this.cm = cm;
 
         }
@@ -97,26 +103,26 @@ public class ComidasTabs extends AppCompatActivity {
                     this.cm.add(cm1);
                     return cm1;
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    ComidasFragment cm2 = ComidasFragment.newInstance(nueves, "Nueves");
+                    ComidasFragment cm2 = ComidasFragment.newInstance(desayuno, "Nueves");
                     this.cm.add(cm2);
                     return cm2;
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    ComidasFragment cm3 = ComidasFragment.newInstance(almuerzo, "Almuerzo");
+                    ComidasFragment cm3 = ComidasFragment.newInstance(desayuno, "Almuerzo");
                     this.cm.add(cm3);
                     return cm3;
 
                 case 3: // Fragment # 1 - This will show SecondFragment
-                    ComidasFragment cm4 = ComidasFragment.newInstance(onces, "Onces");
+                    ComidasFragment cm4 = ComidasFragment.newInstance(desayuno, "Onces");
                     this.cm.add(cm4);
                     return cm4;
 
                 case 4: // Fragment # 1 - This will show SecondFragment
-                    ComidasFragment cm5 = ComidasFragment.newInstance(cena, "Cena");
+                    ComidasFragment cm5 = ComidasFragment.newInstance(desayuno, "Cena");
                     this.cm.add(cm5);
                     return cm5;
 
                 case 5: // Fragment # 1 - This will show SecondFragment
-                    ComidasFragment cm6 = ComidasFragment.newInstance(refrigerio, "Refrigerio");
+                    ComidasFragment cm6 = ComidasFragment.newInstance(desayuno, "Refrigerio");
                     this.cm.add(cm6);
                     return cm6;
                    // return ComidasFragment.newInstance(refrigerio, "Refrigerio");
@@ -157,8 +163,6 @@ public class ComidasTabs extends AppCompatActivity {
         }
     }
 
-
-
     public void reporteOnClick(View v){
         ArrayList<Receta> recetasFinal = new ArrayList<Receta>();
      //   ArrayList<Receta> pruena = recetasFinal;
@@ -168,65 +172,7 @@ public class ComidasTabs extends AppCompatActivity {
             recetasFinal.add(recetaPrueba);
            // pruena.add(comidasFragments.get(i).getReceta());
         }
-/*
-    //elmina elementos no validos
-        Iterator recetas = recetasFinal.iterator();
-        //recorre recetas
-        while(recetas.hasNext()){
 
-
-            Receta receta = (Receta) recetas.next();
-            Iterator categorias = receta.getCategorias().iterator();
-
-            //reccorre categorias
-            while(categorias.hasNext()){
-
-                Categorias categoria = (Categorias) categorias.next();
-                Iterator alimentos = categoria.getAlimentos().iterator();
-
-                while(alimentos.hasNext()){
-                    Alimentos alimento = (Alimentos) alimentos.next();
-
-                    if(!alimento.getIsSelected()) alimentos.remove();
-
-                }
-
-            }
-
-
-        }
-
-        //        Iterator recetas = recetasFinal.iterator();
-        //recorre recetas para eliminar categorias vacios
-        recetas = recetasFinal.iterator();
-        while(recetas.hasNext()){
-            Receta receta = (Receta) recetas.next();
-            Iterator categorias = receta.getCategorias().iterator();
-
-            //reccorre categorias
-            while(categorias.hasNext()){
-
-                Categorias categoria = (Categorias) categorias.next();
-                if(categoria.getAlimentos().size() == 0){
-                    categorias.remove();
-                }
-
-            }
-
-
-        }
-
-        recetas = recetasFinal.iterator();
-        while(recetas.hasNext()){
-
-            Receta receta = (Receta) recetas.next();
-
-            if(receta.getCategorias().size() == 0){
-                recetas.remove();
-            }
-
-        }
-        */
         Intent infoFoodIntent = new Intent(ComidasTabs.this, ReporteActivity.class);
         //infoFoodIntent.putExtra("parcel0",receta);
         //infoFoodIntent.putExtra("parcel2",prueba.get(0));
@@ -241,5 +187,16 @@ public class ComidasTabs extends AppCompatActivity {
         infoFoodIntent.putExtra("dummyIntExtra", dummyInt);
         startActivity(infoFoodIntent);
     }
+
+
+
+    public void onFragmentInteraction (double gramos,double spinnerAntes, double spinnerDespues){
+
+        double diferencia = spinnerAntes - spinnerDespues;
+        cantCarbohidratos = cantCarbohidratos + (diferencia*gramos);
+        tvLabel.setText(getString(R.string.food_grams_not_assigned) + " " + cantCarbohidratos + " gr");
+
+    }
+
 
 }

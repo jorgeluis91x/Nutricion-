@@ -24,6 +24,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import center.innovus.nutriassist.Activities.ComidasTabs;
 import center.innovus.nutriassist.Fragments.ComidasFragment;
 import center.innovus.nutriassist.Models.Alimentos;
 import center.innovus.nutriassist.Models.Categorias;
@@ -42,12 +43,20 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
     private int itemLayoutPadre;
     private int itemLayoutHijo;
     private Activity activity;
+    private ComidasTabs comidasTabs;
     private ComidasFragment fragment;
     private Receta receta;
 
 
+
     public AlimentosExpandibleAdapter(Activity context, Receta parent, int itemLayoutPadre, int itemLayoutHijo, ComidasFragment cm){
         activity = context;
+
+
+
+
+
+
         receta = parent;
         mParent = parent.getCategorias();
         inflater = LayoutInflater.from(context);
@@ -57,6 +66,8 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
 
 
     }
+
+
     @Override
     public int getGroupCount() {
         return mParent.size();
@@ -206,6 +217,7 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
                                // view.setSelected(!view.isSelected());
                                 mParent.get(groupPosition).getAlimentos().get(childPosition).changeSelected();
 
+
                                 view.setSelected(mParent.get(groupPosition).getAlimentos().get(childPosition).getIsSelected());
                                 ChildHolder chi = (ChildHolder) view.getTag();
 
@@ -223,7 +235,7 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
 
                                 }
 
-                                fragment.setPorcion(mParent.get(groupPosition).getAlimentos().get(childPosition).getCarbohidratos(),mParent.get(groupPosition).getAlimentos().get(childPosition).getPorcionesElegidas(),elegidoSpinner);
+                                fragment.sentGramos(mParent.get(groupPosition).getAlimentos().get(childPosition).getCarbohidratos(),mParent.get(groupPosition).getAlimentos().get(childPosition).getPorcionesElegidas(),elegidoSpinner);
                                 fragment.setReceta(receta);
                                 mParent.get(groupPosition).getAlimentos().get(childPosition).setPorcionesElegidas(elegidoSpinner);
                                 chi.spinner.setText(elementoSpinner);

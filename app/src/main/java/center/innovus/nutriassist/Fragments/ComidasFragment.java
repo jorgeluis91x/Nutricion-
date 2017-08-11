@@ -22,6 +22,8 @@ import center.innovus.nutriassist.R;
 
 public class ComidasFragment extends Fragment {
 
+
+
     private double gramsNotAssigned;
     TextView tvLabel;
     private ArrayList<Alimentos> alimentos;
@@ -34,9 +36,15 @@ public class ComidasFragment extends Fragment {
     private Receta receta;
 
 
+    public ComidaSeleccionadaListener mCallback;
 
+    // Container Activity must implement this interface
+    public interface ComidaSeleccionadaListener {
+       // public void OnComidaSeleccionada(int position);
+        public void onFragmentInteraction(double gramos,double spinnerAntes, double spinnerDespues);
 
-
+       // public void setPorcion(double gramos,double spinnerAntes, double spinnerDespues);
+    }
 
     // newInstance constructor for creating fragment with arguments
     public static ComidasFragment newInstance(int page, String title) {
@@ -194,11 +202,21 @@ public class ComidasFragment extends Fragment {
         receta = new Receta(categorias2,comida);
 
 
-
-//      title = getArguments().getString("someTitle");
-
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (ComidaSeleccionadaListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -211,8 +229,6 @@ public class ComidasFragment extends Fragment {
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        tvLabel = (TextView) view.findViewById(R.id.food_grams_not_assigned);
-        tvLabel.setText(getString(R.string.food_grams_not_assigned) + " " + gramsNotAssigned + " gr");
 
         setSpinnerContent( view );
 
@@ -225,45 +241,9 @@ public class ComidasFragment extends Fragment {
 
     }
 
-    /*
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        ArrayList<Alimentos> alimentos =  new ArrayList<Alimentos>();
-        alimentos.add(new Alimentos("Azúcar",4,0,0,4,"Azucar.jpg"));
-        alimentos.add(new Alimentos("Azúcar",4,0,0,4,"Azucar.jpg"));
-        alimentos.add(new Alimentos("Azúcar",4,0,0,4,"Azucar.jpg"));
-        alimentos.add(new Alimentos("Azúcar",4,0,0,4,"Azucar.jpg"));
-
-        ArrayList<Categorias> categorias =new ArrayList<Categorias>();
-        categorias.add(new Categorias("Azucares",alimentos));
-        categorias.add(new Categorias("Prueba",alimentos));
-        categorias.add(new Categorias("Prueba2",alimentos));
-
-        ExpandableListView mExpandableList = (ExpandableListView)getActivity().findViewById(R.id.expandableListView);
-        final AlimentosExpandibleAdapter mAdaptador= new AlimentosExpandibleAdapter(getActivity(),categorias,R.layout.row_categoria,R.layout.row_productos);
-        mExpandableList.setAdapter(mAdaptador);
-
-    }
-*/
-
-   /* public void setPorcion(int gramos){
-
-        gramsNotAssigned = gramsNotAssigned - gramos;
-        tvLabel.setText(getString(R.string.food_grams_not_assigned) + " " + gramsNotAssigned + " gr");
-
-
-    }
-*/
-    public void setPorcion(double gramos,double spinnerAntes, double spinnerDespues){
-
-        double diferencia = spinnerAntes - spinnerDespues;
-        gramsNotAssigned = gramsNotAssigned + (diferencia*gramos);
-        tvLabel.setText(getString(R.string.food_grams_not_assigned) + " " + gramsNotAssigned + " gr");
-
-    }
+     public void sentGramos(double gramos,double spinnerAntes, double spinnerDespues){
+         mCallback.onFragmentInteraction(gramos,spinnerAntes,spinnerDespues);
+     }
 
     public void setReceta(Receta receta){
         this.receta = receta;
@@ -272,17 +252,6 @@ public class ComidasFragment extends Fragment {
     public Receta getReceta(){
         return this.receta;
     }
-    /*
-    public interface OnGetData {
-        // This can be any number of events to be sent to the activity
-        public void onRssItemSelected(String link);
-    }
-    public Arra ponerBusqueda(){
-        this.busqueda = busqueda;
 
-        ((EmpresasAdapter) recyclerView.getAdapter()).setFilter(busqueda);
-        //Toast.makeText(getActivity(), busqueda, Toast.LENGTH_LONG).show();
-    }
-*/
 
 }

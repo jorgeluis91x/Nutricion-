@@ -5,14 +5,7 @@
     android:orientation="vertical"
     tools:context="center.innovus.nutriassist.Fragments.ComidasFragment">
 
-    <TextView
-        android:id="@+id/food_grams_not_assigned"
-        android:padding="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/primary_text"
-        android:text="@string/food_grams_not_assigned"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+
 
     <ExpandableListView
         android:layout_width="wrap_content"
