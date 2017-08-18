@@ -26,6 +26,7 @@ import center.innovus.nutriassist.R;
 public class ReporteActivity extends AppCompatActivity {
     MyPagerAdapter adapterViewPager;
     int dummyInt;
+    String identificacion;
 
 
     private ArrayList<ReportesFragment> reportesFragments = new ArrayList<ReportesFragment>();
@@ -39,6 +40,8 @@ public class ReporteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reporte);
+
+        identificacion = getIntent().getStringExtra("identificacion");
 
 
       // Alimentos object = getIntent().getExtras().getParcelable("parcel");
@@ -190,6 +193,7 @@ public class ReporteActivity extends AppCompatActivity {
         startActivity(homeIntent);*/
 
         Intent promedioIntent = new Intent(ReporteActivity.this, PromedioActivity.class);
+        promedioIntent.putExtra("identificacion", identificacion);
         startActivity(promedioIntent);
 
 

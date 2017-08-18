@@ -36,6 +36,7 @@ public class ComidasTabs extends AppCompatActivity  implements ComidasFragment.C
 
     private int desayuno;
     public double cantCarbohidratos;
+    private String identificacion;
     /*private int nueves;
     private int almuerzo;
     private int onces;
@@ -50,6 +51,8 @@ public class ComidasTabs extends AppCompatActivity  implements ComidasFragment.C
         setContentView(R.layout.activity_comidas_tabs);
 
         cantCarbohidratos = getIntent().getIntExtra("cantCarbohidratos",0);
+        identificacion = getIntent().getStringExtra("identificacion");
+
 
         //desayuno = cantCarbohidratos;
         tvLabel = (TextView) this.findViewById(R.id.grams_not_assigned);
@@ -185,6 +188,7 @@ public class ComidasTabs extends AppCompatActivity  implements ComidasFragment.C
         //infoFoodIntent.putParcelableArrayListExtra("recetas",recetasFinal);
 
         infoFoodIntent.putExtra("dummyIntExtra", dummyInt);
+        infoFoodIntent.putExtra("identificacion", identificacion);
         startActivity(infoFoodIntent);
     }
 

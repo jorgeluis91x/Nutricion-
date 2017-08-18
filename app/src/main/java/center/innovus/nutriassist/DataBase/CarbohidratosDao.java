@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import center.innovus.nutriassist.Models.Carbohidratos;
 
@@ -29,16 +30,33 @@ public class CarbohidratosDao {
         db.insert("carbohidrato",null,registro);
         db.close();
     }
+
+    public double getPromedio(String identificacion){
+        SQLiteDatabase db = admin.getWritableDatabase();
+
+        Cursor fila = db.rawQuery("select round(avg(carbohidratos),1) from carbohidrato where identificacion = '"+ identificacion+"'", null);
+        double promedio = 0;
+        if(fila.moveToFirst()){
+            promedio = fila.getDouble(0);
+        }
+        db.close();
+        return promedio;
+    }
     public ArrayList<Carbohidratos> getCarbohidratosByIdentificacion(String identificacion){
 
         ArrayList<Carbohidratos> carbohidratos = new ArrayList<Carbohidratos>();
         SQLiteDatabase db = admin.getWritableDatabase();
 
-        Cursor fila = db.rawQuery("select identificacion, carbohidratos, fecha from carbohidrato where identificacion ="+ identificacion, null);
+        Cursor fila = db.rawQuery("select identificacion, carbohidratos, fecha from carbohidrato where identificacion = '"+ identificacion+"'", null);
 
         if(fila.moveToFirst()){
 
-            carbohidratos.add(new Carbohidratos(fila.getString(0),fila.getDouble(1),fila.getString(3)));
+            do{
+                String prueba = fila.getString(2);
+                carbohidratos.add(new Carbohidratos(fila.getString(0),fila.getDouble(1),prueba));
+
+            } while (fila.moveToNext());
+
 
         }
         db.close();

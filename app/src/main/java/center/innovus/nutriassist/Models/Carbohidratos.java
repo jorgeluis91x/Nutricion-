@@ -12,6 +12,7 @@ public class Carbohidratos {
     public Carbohidratos(String identificacion, double carbohidratos, String fecha) {
         this.identificacion = identificacion;
         this.carbohidratos = carbohidratos;
+        this.fecha = fecha;
     }
 
     public Carbohidratos(String identificacion, double carbohidratos) {
