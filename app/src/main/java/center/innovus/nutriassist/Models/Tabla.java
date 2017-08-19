@@ -8,7 +8,9 @@ package center.innovus.nutriassist.Models;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
+import android.view.Display;
 import android.view.Gravity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -27,19 +29,21 @@ public class Tabla {
     private Activity actividad;
     private Resources rs;
     private int FILAS, COLUMNAS;        // Filas y columnas de nuestra tabla
+    Display display;
 
     /**
      * Constructor de la tabla
      * @param actividad Actividad donde va a estar la tabla
      * @param tabla TableLayout donde se pintará la tabla
      */
-    public Tabla(Activity actividad, TableLayout tabla)
+    public Tabla(Activity actividad, TableLayout tabla, Display display)
     {
         this.actividad = actividad;
         this.tabla = tabla;
         rs = this.actividad.getResources();
         FILAS = COLUMNAS = 0;
         filas = new ArrayList<TableRow>();
+        this.display = display;
     }
 
     /**
@@ -48,9 +52,16 @@ public class Tabla {
      */
     public void agregarCabecera(int recursocabecera)
     {
+
+
+        Point outSize = new Point();
+        display.getSize(outSize);
+      //  TableLayout.LayoutParams sudoku_tbl_lp = new TableLayout.LayoutParams(outSize.x,outSize.y,80.0f);
+
+
         TableRow.LayoutParams layoutCelda;
         TableRow fila = new TableRow(actividad);
-        TableRow.LayoutParams layoutFila = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+        TableRow.LayoutParams layoutFila = new TableRow.LayoutParams(getSizeReal(outSize.x),TableRow.LayoutParams.MATCH_PARENT,80.0f);
         fila.setLayoutParams(layoutFila);
 
         String[] arraycabecera = rs.getStringArray(recursocabecera);
@@ -59,7 +70,8 @@ public class Tabla {
         for(int i = 0; i < arraycabecera.length; i++)
         {
             TextView texto = new TextView(actividad);
-            layoutCelda = new TableRow.LayoutParams(obtenerAnchoPixelesTexto(arraycabecera[i]), TableRow.LayoutParams.WRAP_CONTENT);
+
+            layoutCelda = new TableRow.LayoutParams(getSizeReal(outSize.x),TableRow.LayoutParams.MATCH_PARENT,80.0f);
             texto.setText(arraycabecera[i]);
             texto.setGravity(Gravity.CENTER_HORIZONTAL);
             texto.setTextAppearance(actividad, R.style.estilo_celda);
@@ -81,10 +93,14 @@ public class Tabla {
      */
     public void agregarFilaTabla(ArrayList<String> elementos)
     {
+        Point outSize = new Point();
+        display.getSize(outSize);
+
         TableRow.LayoutParams layoutCelda;
-        TableRow.LayoutParams layoutFila = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+        TableRow.LayoutParams layoutFila = new TableRow.LayoutParams(getSizeReal(outSize.x), TableRow.LayoutParams.WRAP_CONTENT,80.0f);
         TableRow fila = new TableRow(actividad);
         fila.setLayoutParams(layoutFila);
+
 
         for(int i = 0; i< elementos.size(); i++)
         {
@@ -93,7 +109,7 @@ public class Tabla {
             texto.setGravity(Gravity.CENTER_HORIZONTAL);
             texto.setTextAppearance(actividad, R.style.estilo_celda);
             texto.setBackgroundResource(R.drawable.tabla_celda);
-            layoutCelda = new TableRow.LayoutParams(obtenerAnchoPixelesTexto(texto.getText().toString()), TableRow.LayoutParams.WRAP_CONTENT);
+            layoutCelda = new TableRow.LayoutParams(getSizeReal(outSize.x),TableRow.LayoutParams.WRAP_CONTENT,80.0f);
             texto.setLayoutParams(layoutCelda);
 
             fila.addView(texto);
@@ -158,5 +174,18 @@ public class Tabla {
 
         p.getTextBounds(texto, 0, texto.length(), bounds);
         return bounds.width();
+    }
+
+    private int getSizeReal(int x){
+        //Double.parseDouble((x * 0.1) + "") ;
+        x = x - (int)Math.round((Double)(x*0.1));
+        return x;
+
+
+
+
+       // display.getSize(outSize);
+
+
     }
 }

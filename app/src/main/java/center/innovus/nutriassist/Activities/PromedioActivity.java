@@ -3,6 +3,7 @@ package center.innovus.nutriassist.Activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.TableLayout;
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class PromedioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_promedio);
 
 
+
+
         identificacion = getIntent().getStringExtra("identificacion");
 
         CarbohidratosDao cb = new CarbohidratosDao(getApplicationContext());
@@ -30,7 +33,7 @@ public class PromedioActivity extends AppCompatActivity {
 
 
 
-        Tabla tabla = new Tabla(this, (TableLayout)findViewById(R.id.tabla));
+        Tabla tabla = new Tabla(this, (TableLayout)findViewById(R.id.tabla),  getWindowManager().getDefaultDisplay());
         tabla.agregarCabecera(R.array.cabecera_tabla);
         for(int i = 0; i < carbohidratos.size(); i++)
         {
