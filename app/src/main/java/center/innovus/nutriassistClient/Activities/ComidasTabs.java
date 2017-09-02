@@ -19,7 +19,7 @@ import center.innovus.nutriassistClient.Fragments.ComidasFragment;
 import center.innovus.nutriassistClient.Models.Receta;
 import center.innovus.nutriassistClient.R;
 
-public class ComidasTabs extends AppCompatActivity  implements ComidasFragment.ComidaSeleccionadaListener {
+public class ComidasTabs extends AppCompatActivity /* implements ComidasFragment.ComidaSeleccionadaListener*/ {
 
 
     MyPagerAdapter adapterViewPager;
@@ -29,11 +29,11 @@ public class ComidasTabs extends AppCompatActivity  implements ComidasFragment.C
     private int desayuno;
     public double cantCarbohidratos;
     private String identificacion;
-    /*private int nueves;
+    private int nueves;
     private int almuerzo;
     private int onces;
     private int cena;
-    private int refrigerio;*/
+    private int refrigerio;
     private ArrayList<ComidasFragment> comidasFragments = new ArrayList<ComidasFragment>();
 
 
@@ -46,18 +46,19 @@ public class ComidasTabs extends AppCompatActivity  implements ComidasFragment.C
         identificacion = getIntent().getStringExtra("identificacion");
 
 
-        //desayuno = cantCarbohidratos;
-        tvLabel = (TextView) this.findViewById(R.id.grams_not_assigned);
+
+      /*  tvLabel = (TextView) this.findViewById(R.id.grams_not_assigned);
         tvLabel.setText(getString(R.string.food_grams_not_assigned) + " " + cantCarbohidratos + " gr");
-        /*
-        nueves = cantCarbohidratos;
-        almuerzo = cantCarbohidratos;
-        onces = cantCarbohidratos;
-        cena = cantCarbohidratos;
-        refrigerio = cantCarbohidratos;*/
+*/
+        desayuno = (int)(cantCarbohidratos *0.20);
+        nueves = (int)(cantCarbohidratos * 0.10);
+        almuerzo = (int)(cantCarbohidratos *0.30);
+        onces = (int)(cantCarbohidratos* 0.10);
+        cena = (int)(cantCarbohidratos *0.20);
+        refrigerio = (int)(cantCarbohidratos* 0.10);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        adapterViewPager = new MyPagerAdapter(desayuno,/*nueves,almuerzo,onces,cena,refrigerio,*/getSupportFragmentManager(),comidasFragments);
+        adapterViewPager = new MyPagerAdapter(desayuno,nueves,almuerzo,onces,cena,refrigerio,getSupportFragmentManager(),comidasFragments);
         viewPager.setAdapter(adapterViewPager);
 
         SmartTabLayout viewPagerTab = (SmartTabLayout) findViewById(R.id.viewpagertab);
@@ -67,17 +68,17 @@ public class ComidasTabs extends AppCompatActivity  implements ComidasFragment.C
 
     public static class MyPagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 6;
-        private int desayuno/*, nueves, almuerzo, onces, cena, refrigerio*/;
+        private int desayuno, nueves, almuerzo, onces, cena, refrigerio;
         private ArrayList<ComidasFragment> cm ;
 
-        public MyPagerAdapter(int desayuno,/*int nueves,int almuerzo, int onces, int cena, int refrigerio,*/FragmentManager fragmentManager, ArrayList<ComidasFragment> cm) {
+        public MyPagerAdapter(int desayuno,int nueves,int almuerzo, int onces, int cena, int refrigerio,FragmentManager fragmentManager, ArrayList<ComidasFragment> cm) {
             super(fragmentManager);
             this.desayuno = desayuno;
-           /* this.almuerzo =almuerzo;
+            this.almuerzo =almuerzo;
             this.cena = cena;
             this.nueves = nueves;
             this.refrigerio = refrigerio;
-            this.onces = onces;*/
+            this.onces = onces;
             this.cm = cm;
 
         }
@@ -98,26 +99,26 @@ public class ComidasTabs extends AppCompatActivity  implements ComidasFragment.C
                     this.cm.add(cm1);
                     return cm1;
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    ComidasFragment cm2 = ComidasFragment.newInstance(desayuno, "Nueves");
+                    ComidasFragment cm2 = ComidasFragment.newInstance(nueves, "Nueves");
                     this.cm.add(cm2);
                     return cm2;
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    ComidasFragment cm3 = ComidasFragment.newInstance(desayuno, "Almuerzo");
+                    ComidasFragment cm3 = ComidasFragment.newInstance(almuerzo, "Almuerzo");
                     this.cm.add(cm3);
                     return cm3;
 
                 case 3: // Fragment # 1 - This will show SecondFragment
-                    ComidasFragment cm4 = ComidasFragment.newInstance(desayuno, "Onces");
+                    ComidasFragment cm4 = ComidasFragment.newInstance(onces, "Onces");
                     this.cm.add(cm4);
                     return cm4;
 
                 case 4: // Fragment # 1 - This will show SecondFragment
-                    ComidasFragment cm5 = ComidasFragment.newInstance(desayuno, "Cena");
+                    ComidasFragment cm5 = ComidasFragment.newInstance(cena, "Cena");
                     this.cm.add(cm5);
                     return cm5;
 
                 case 5: // Fragment # 1 - This will show SecondFragment
-                    ComidasFragment cm6 = ComidasFragment.newInstance(desayuno, "Refrigerio");
+                    ComidasFragment cm6 = ComidasFragment.newInstance(refrigerio, "Refrigerio");
                     this.cm.add(cm6);
                     return cm6;
                    // return ComidasFragment.newInstance(refrigerio, "Refrigerio");

@@ -40,16 +40,6 @@
 
         />
 
-    <TextView
-        android:id="@+id/grams_not_assigned"
-        android:padding="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/primary_text"
-        android:text="@string/food_grams_not_assigned"
-        android:layout_below="@id/viewpagertab"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/calculate_TCV"
-        android:layout_below="@id/grams_not_assigned"
+        android:layout_below="@id/viewpagertab"
         />
 
 

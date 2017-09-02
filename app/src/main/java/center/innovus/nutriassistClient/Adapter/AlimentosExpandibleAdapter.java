@@ -231,7 +231,11 @@ public class AlimentosExpandibleAdapter extends BaseExpandableListAdapter {
 
                                 }
 
-                                fragment.sentGramos(mParent.get(groupPosition).getAlimentos().get(childPosition).getCarbohidratos(),mParent.get(groupPosition).getAlimentos().get(childPosition).getPorcionesElegidas(),elegidoSpinner);
+
+
+                                /*fragment.sentGramos(mParent.get(groupPosition).getAlimentos().get(childPosition).getCarbohidratos(),mParent.get(groupPosition).getAlimentos().get(childPosition).getPorcionesElegidas(),elegidoSpinner);
+                                fragment.setReceta(receta);*/
+                                fragment.setPorcion(mParent.get(groupPosition).getAlimentos().get(childPosition).getCarbohidratos(),mParent.get(groupPosition).getAlimentos().get(childPosition).getPorcionesElegidas(),elegidoSpinner);
                                 fragment.setReceta(receta);
                                 mParent.get(groupPosition).getAlimentos().get(childPosition).setPorcionesElegidas(elegidoSpinner);
                                 chi.spinner.setText(elementoSpinner);

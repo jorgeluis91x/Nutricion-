@@ -33,7 +33,7 @@ public class ComidasFragment extends Fragment {
     private String comida;
     private Receta receta;
 
-
+/*
     public ComidaSeleccionadaListener mCallback;
 
     // Container Activity must implement this interface
@@ -42,7 +42,7 @@ public class ComidasFragment extends Fragment {
         public void onFragmentInteraction(double gramos,double spinnerAntes, double spinnerDespues);
 
        // public void setPorcion(double gramos,double spinnerAntes, double spinnerDespues);
-    }
+    }*/
 
     // newInstance constructor for creating fragment with arguments
     public static ComidasFragment newInstance(int page, String title) {
@@ -201,7 +201,7 @@ public class ComidasFragment extends Fragment {
 
 
     }
-
+/*
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -215,7 +215,7 @@ public class ComidasFragment extends Fragment {
                     + " must implement OnHeadlineSelectedListener");
         }
     }
-
+*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -227,6 +227,9 @@ public class ComidasFragment extends Fragment {
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        tvLabel = (TextView) view.findViewById(R.id.food_grams_not_assigned);
+        tvLabel.setText(getString(R.string.food_grams_not_assigned) + " " + gramsNotAssigned + " gr");
+
 
         setSpinnerContent( view );
 
@@ -238,11 +241,19 @@ public class ComidasFragment extends Fragment {
         mExpandableList.setAdapter(mAdaptador);
 
     }
-
+/*
      public void sentGramos(double gramos,double spinnerAntes, double spinnerDespues){
          mCallback.onFragmentInteraction(gramos,spinnerAntes,spinnerDespues);
      }
+*/
 
+    public void setPorcion(double gramos,double spinnerAntes, double spinnerDespues){
+
+        double diferencia = spinnerAntes - spinnerDespues;
+        gramsNotAssigned = gramsNotAssigned + (diferencia*gramos);
+        tvLabel.setText(getString(R.string.food_grams_not_assigned) + " " + gramsNotAssigned + " gr");
+
+    }
     public void setReceta(Receta receta){
         this.receta = receta;
 
