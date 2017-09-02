@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NutriAssist</string>
+    <string name="app_name">NutriAssist Paciente</string>
 
 
     <string name="erase_all_fields">Borrar todo</string>

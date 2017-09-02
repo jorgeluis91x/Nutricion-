@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="center.innovus.nutriassist.Fragments.ComidasFragment">
+    tools:context="center.innovus.nutriassistClient.Fragments.ComidasFragment">
 
 
 

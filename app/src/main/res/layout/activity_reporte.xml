@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="center.innovus.nutriassist.Activities.ReporteActivity">
+    tools:context="center.innovus.nutriassistClient.Activities.ReporteActivity">
 
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/viewpagertabreporte"

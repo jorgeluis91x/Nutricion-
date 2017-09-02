@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context="center.innovus.nutriassist.Activities.PromedioActivity">
+    tools:context="center.innovus.nutriassistClient.Activities.PromedioActivity">
 
     <ScrollView
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="center.innovus.nutriassist">
+    package="center.innovus.nutriassistClient">
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.SplashScreen"
+            android:name="center.innovus.nutriassistClient.Activities.SplashScreen"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.CarbohidratosActivity"
+            android:name="center.innovus.nutriassistClient.Activities.CarbohidratosActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,31 +29,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.ScrollingActivity"
+            android:name="center.innovus.nutriassistClient.Activities.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="center.innovus.nutriassistClient.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="center.innovus.nutriassist.MainActivity" />
+                android:value="center.innovus.nutriassistClient.MainActivity" />
         </activity>
         <activity
-            android:name=".Activities.AsignarActivity"
+            android:name="center.innovus.nutriassistClient.Activities.AsignarActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.PorcentajesComidasActivity"
+            android:name="center.innovus.nutriassistClient.Activities.PorcentajesComidasActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.ComidasActivity"
+            android:name="center.innovus.nutriassistClient.Activities.ComidasActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.ComidasTabs"
+            android:name="center.innovus.nutriassistClient.Activities.ComidasTabs"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.ReporteActivity"
+            android:name="center.innovus.nutriassistClient.Activities.ReporteActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Activities.PromedioActivity"></activity>
+        <activity android:name="center.innovus.nutriassistClient.Activities.PromedioActivity"></activity>
     </application>
 
 </manifest>
